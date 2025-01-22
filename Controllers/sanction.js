@@ -247,7 +247,7 @@ export const sanctionApprove = asyncHandler(async (req, res) => {
                 throw new Error("This PAN already has an active lead!!");
             }
 
-            const newLoanNo = await nextSequence("loanNo", "QUALON", 7);
+            const newLoanNo = await nextSequence("loanNo", "LN", 7);
 
             // Call the generateSanctionLetter utility function
             // const emailResponse = await generateSanctionLetter(

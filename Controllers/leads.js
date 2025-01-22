@@ -52,7 +52,7 @@ export const createLead = asyncHandler(async (req, res) => {
             pan: pan,
         });
     }
-    const leadNo = await nextSequence("leadNo", "QUALED", 10);
+    const leadNo = await nextSequence("leadNo", "LD", 10);
 
     const leadStatus = await LeadStatus.create({
         pan: pan,

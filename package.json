@@ -1,15 +1,15 @@
 {
-    "name": "crm-backend",
+    "name": "only1-crm-backend",
     "version": "1.0.0",
     "main": "index.js",
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "pm2 start index.js --name crm-backend",
-        "restart": "pm2 restart crm-backend",
-        "stop": "pm2 stop crm-backend",
-        "logs": "pm2 logs crm-backend",
-        "delete": "pm2 delete crm-backend",
+        "start": "pm2 start index.js --name only1-crm-backend",
+        "restart": "pm2 restart only1-crm-backend",
+        "stop": "pm2 stop only1-crm-backend",
+        "logs": "pm2 logs only1-crm-backend",
+        "delete": "pm2 delete only1-crm-backend",
         "dev": "nodemon index.js"
     },
     "keywords": [],
