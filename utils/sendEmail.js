@@ -15,7 +15,7 @@ async function sendEmail(recipient, recipientName, subject,link) {
                 "content-type": "application/json",
             },
             data: JSON.stringify({
-                from: { address: "info@qualoan.com" },
+                from: { address: "info@only1loan.com" },
                 to: [
                     {
                         email_address: {
