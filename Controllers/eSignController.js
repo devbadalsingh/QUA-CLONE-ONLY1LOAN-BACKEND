@@ -121,9 +121,8 @@ export const getDoc = async (referenceId, data, time) => {
             responseType: "arraybuffer", // Important to preserve the binary data
         });
 
-        const application = await Application.findOne({ lead: lead._id });
         const sanction = await Sanction.findOneAndUpdate(
-            { application: application._id },
+            { leadNo: lead.leadNo },
             { eSigned: true, eSignPending: false },
             { new: true }
         );

@@ -23,8 +23,7 @@ export const generateSanctionLetter = async (
     stateCountry,
     camDetails,
     lead,
-    docs,
-    recipientEmail
+    docs
 ) => {
     try {
         const htmlToSend = sanctionLetter(
@@ -50,25 +49,15 @@ export const generateSanctionLetter = async (
         });
 
         const stepOne = await initiate(formData);
-        console.log("referenceId: ", stepOne.data.referenceId);
-
         const stepTwo = await eSignStepTwo(stepOne.data.referenceId);
-        console.log("StepTwo: ", stepTwo);
-
         const fullName = formatFullName(lead.fName, lead.mName, lead.lName);
-        console.log("Full Name: ", fullName);
-
         const stepThree = await eSignStepThree(
             lead._id.toString(),
             `${fullName}`,
             lead.aadhaar,
             stepTwo.data.file.directURL
         );
-        console.log("StepThree: ", stepThree);
-
         const stepFour = await eSignStepFour(stepThree.data.referenceId);
-        console.log("StepFour: ", stepFour);
-
         // Setup the options for the ZeptoMail API
         const options = {
             method: "POST",
@@ -84,7 +73,7 @@ export const generateSanctionLetter = async (
                 to: [
                     {
                         email_address: {
-                            address: recipientEmail,
+                            address: lead.personalEmail,
                             name: fullname,
                         },
                     },

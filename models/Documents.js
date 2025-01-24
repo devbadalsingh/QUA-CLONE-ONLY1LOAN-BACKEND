@@ -21,7 +21,6 @@ const documentSchema = new mongoose.Schema({
                         "eAadhaar",
                         "panCard",
                         "cibilReport",
-                        "sanctionLetter",
                         // Add more document types as needed
                     ],
                 },
