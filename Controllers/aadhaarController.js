@@ -21,8 +21,8 @@ export const generateAadhaarLink = asyncHandler(async (req, res) => {
     req.session.token = token;
 
     const customerName = `${fName}${mName && ` ${mName}`} ${lName}`;
-    // const link = `https://api.only1loan.com/verify-aadhaar/${id}`;
-    const link = `http://localhost:8080/verify-aadhaar/${id}`;
+    const link = `https://api.only1loan.com/verify-aadhaar/${id}`;
+    // const link = `http://localhost:8080/verify-aadhaar/${id}`;
     const result = await aadhaarKyc(lead.mobile, lead.fName, lead.lName, link);
 
     if (result.data.ErrorMessage === "Success") {
