@@ -1,25 +1,25 @@
 import axios from "axios";
 
-export const verifyBank = async (bankAccNo, ifscCode) => {
+export const verifyBank = async (beneficiaryName, bankAccNo, ifscCode) => {
     try {
         let data = {
-            accountNumber: `${bankAccNo}`,
+            accNo: `${bankAccNo}`,
             ifsc: `${ifscCode}`,
+            benificiaryName: `${beneficiaryName}`,
         };
 
         const response = await axios.post(
-            "https://sm-kyc-sync-prod.scoreme.in/kyc/external/bankAccountVerification",
+            "https://api.digitap.ai/penny-drop/v2/check-valid",
             data,
             {
                 headers: {
-                    ClientId: process.env.SCOREME_AUTH_CLIENTID,
-                    ClientSecret: process.env.SCOREME_AUTH_SECRETKEY, // Added this line
-                    "Content-Type": "application/json",
+                    Authorization: process.env.DIGITAP_AUTH_KEY,
+                    "Content-type": "application/json",
                 },
             }
         );
 
-        if (response.data?.responseCode === "SRC001") {
+        if (response.data.model.status === "SUCCESS") {
             return { success: true };
         }
 

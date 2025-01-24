@@ -84,7 +84,7 @@ export const bankVerification = asyncHandler(async (req, res) => {
         throw new Error("This account number is already regested!!!");
     }
 
-    const response = await verifyBank(bankAccNo, ifscCode);
+    const response = await verifyBank(beneficiaryName, bankAccNo, ifscCode);
 
     if (!response.success) {
         res.status(400);
@@ -253,7 +253,7 @@ export const updateApplicantBankDetails = asyncHandler(async (req, res) => {
         throw new Error("No applicant found!!!");
     }
 
-    const verify = await verifyBank(bankAccNo, ifscCode);
+    const verify = await verifyBank(beneficiaryName, bankAccNo, ifscCode);
 
     if (!verify.success) {
         res.status(400);
