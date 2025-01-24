@@ -21,8 +21,8 @@ export const generateAadhaarLink = asyncHandler(async (req, res) => {
     req.session.token = token;
 
     const customerName = `${fName}${mName && ` ${mName}`} ${lName}`;
-    const link = `https://api.only1loan.com/verify-aadhaar/${id}`;
-    // const link = `http://localhost:8080/verify-aadhaar/${id}`;
+    // const link = `https://api.only1loan.com/verify-aadhaar/${id}`;
+    const link = `http://localhost:8080/verify-aadhaar/${id}`;
     const result = await aadhaarKyc(lead.mobile, lead.fName, lead.lName, link);
 
     if (result.data.ErrorMessage === "Success") {
@@ -114,13 +114,12 @@ export const saveAadhaarDetails = asyncHandler(async (req, res) => {
 
     // Check if the response status code is 422 which is for failed verification
     if (response.code === "200") {
+        const lead = await Lead.findOne({ _id: id });
         const details = response.model;
-        // const name = details.name.split(" ");
-        // const aadhaarNumber = details.adharNumber.slice(-4);
-        // const uniqueId = `${name[0].toLowerCase()}${aadhaarNumber}`;
+        const uniqueId = `${lead.aadhaar}`;
 
         const existingAadhaar = await AadhaarDetails.findOne({
-            "details.adharNumber": details.adharNumber,
+            uniqueId: uniqueId,
         });
 
         if (existingAadhaar) {
@@ -137,6 +136,7 @@ export const saveAadhaarDetails = asyncHandler(async (req, res) => {
 
         // Save Aaadhaar details in AadharDetails model
         await AadhaarDetails.create({
+            uniqueId,
             details,
         });
         await Lead.findByIdAndUpdate(
@@ -173,9 +173,10 @@ export const checkAadhaarDetails = asyncHandler(async (req, res) => {
 
     const lead = await Lead.findById(id);
     const { aadhaar } = lead;
-    const data = await AadhaarDetails.findOne({
-        "details.adharNumber": aadhaar,
-    });
+    const uniqueId = `${aadhaar}`;
+    const data = await AadhaarDetails.findOne({ uniqueId });
+
+    // res.render('otpRequest',);
 
     res.json({
         success: true,
@@ -188,8 +189,6 @@ export const checkAadhaarDetails = asyncHandler(async (req, res) => {
 // @access Private
 export const verifyAadhaar = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    console.log(id);
-
     const lead = await Lead.findByIdAndUpdate(
         id,
         { isAadhaarVerified: true },

@@ -54,7 +54,7 @@ export const verifyAadhaarOtp = async (
         codeVerifier,
     };
 
-    console.log('data',data)
+    console.log("data", data);
     try {
         const response = await axios.post(
             "https://svc.digitap.ai/ent/v3/kyc/submit-otp",
@@ -66,6 +66,8 @@ export const verifyAadhaarOtp = async (
                 },
             }
         );
+        console.log("Response: ", response.data);
+
         return response.data; // Return the response data
     } catch (error) {
         throw new Error(error?.response?.data?.msg || "An error occurred");
