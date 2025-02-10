@@ -10,12 +10,12 @@ async function sendEmail(recipient, recipientName, subject,link) {
             headers: {
                 accept: "application/json",
                 authorization:
-                    "Zoho-enczapikey PHtE6r1eFL/rjzF68UcBsPG/Q8L1No16/b5jKgkU44hBCPMFS00Eo49/xjO/ohkqU6JBRqTJy45v572e4u/TcWflNm1JWGqyqK3sx/VYSPOZsbq6x00etVkdd03eVoLue95s0CDfv9fcNA==",
+                    "Zoho-enczapikey PHtE6r1bFL3rjGJ5oRUH7KO6FcajPNwqqONmKVFP5osQCv5STk1T+Y8okzbmqxh/A6NLEv6ezdpr57jIt+iHJme4Zj5EDWqyqK3sx/VYSPOZsbq6x00Zs1seck3aVY7metVt1iXTvdzcNA==",
                 "cache-control": "no-cache",
                 "content-type": "application/json",
             },
             data: JSON.stringify({
-                from: { address: "info@only1loan.com" },
+                from: { address: "info@namanfinlease.com" },
                 to: [
                     {
                         email_address: {
