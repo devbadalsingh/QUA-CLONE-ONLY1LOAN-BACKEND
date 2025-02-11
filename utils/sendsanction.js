@@ -64,12 +64,13 @@ export const generateSanctionLetter = async (
             url: "https://api.zeptomail.in/v1.1/email",
             headers: {
                 accept: "application/json",
-                authorization: `Zoho-enczapikey PHtE6r1bFL3rjGJ5oRUH7KO6FcajPNwqqONmKVFP5osQCv5STk1T+Y8okzbmqxh/A6NLEv6ezdpr57jIt+iHJme4Zj5EDWqyqK3sx/VYSPOZsbq6x00Zs1seck3aVY7metVt1iXTvdzcNA==`,
-                "cache-control": "no-cache",
-                "content-type": "application/json",
+                authorization: process.env.ZEPTO_MAIL_APIKEY
+                // `Zoho-enczapikey PHtE6r1bFL3rjGJ5oRUH7KO6FcajPNwqqONmKVFP5osQCv5STk1T+Y8okzbmqxh/A6NLEv6ezdpr57jIt+iHJme4Zj5EDWqyqK3sx/VYSPOZsbq6x00Zs1seck3aVY7metVt1iXTvdzcNA==`,
+                // "cache-control": "no-cache",
+                // "content-type": "application/json",
             },
             data: JSON.stringify({
-                from: { address: "info@namanfinlease.com" },
+                from: { address: "info@only1loan.com" },
                 to: [
                     {
                         email_address: {
